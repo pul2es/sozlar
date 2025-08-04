@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title>Betpari Matnlar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --main-color: #007aff;
+      --bg-color: #f2f2f7;
+      --card-color: #ffffff;
+      --text-color: #000;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--main-color);
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background-color: var(--card-color);
+      padding: 18px 20px;
+      border-radius: 14px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+
+    .card:active {
+      transform: scale(0.98);
+      background-color: #e6f0ff;
+    }
+
+    #toast {
+      position: fixed;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--main-color);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 16px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 100;
+    }
+
+    #toast.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>📋 Betpari Matnlar</h2>
+  <div id="container"></div>
+  <div id="toast">✅ Nusxa olindi!</div>
+
+  <script>
+    const data = {
+    "agar niyat": "Agar niyat bo'lsa man bilan tikib ko'ring signallarim hammasi bepul beruvraman shundo. Manda anchasi aniq siz ham pul ishlab olasiz sekin sekin. \nO'zim tshuntirib o'rgataman o'zim tuzgan signallarni beraman sizga ham)",
+    "betpari haqida": "Betpari — bu ham tikish sayti, 1XBetga o‘xshaydi. Lekin Betpari soddaroq, tezroq va o‘zbekistonliklar uchun qulay platforma.\nUnda ham crash o‘yini, sport stavkalari, va boshqa yo‘nalishlar bor.\nRo‘yxatdan o‘tish oson, to‘lovlar Payme, Click, Uzcard orqali bemalol amalga oshadi.\n\nMen aynan shu saytlarda crash o‘yinga signal beraman, va signallarim aniq, hisob-kitob asosida bo‘ladi.\nOdamlar ishonch bilan ishlashyapti, chunki har kuni 10 ta signal beraman va hammasi o‘tadi.",
+    "boldi unda": "Bo'ldi unda bugundan daromadga chiqasiz nasib. Oldin ro'yxatdan o'tib olish kerak bo'ladi va hisobizni todlrasiz 20-30 ming so'm ga, Signallarimga tikmqochi bo'lsez, Faqat shunda chiqadi Man BETPARI da tikaman, Sizga ham shuni tafsiya qilaman, Boshlimizmi ilovani tashab berimi, hisobni to'ldirishga puliz chiqadimi?",
+    "crash haqida": "Hullas crash degan o'yin bor shunga signal beraman crash degan o'yin betpari ilovasida bor va signallarim hammasi shunda ishlaydi betparida ro'yxatdan o'tib kamida 15 ming yoki 30 ming so'mga hisobingizni to'ldirsangiz sizga ham signallar beraman nasib siz ham zo'r pul topib boshlaysiz, ha desez boshlaymiz",
+    "daromad qilasiz": "15 ming tiksez boshiga 1-2 kun 100-120 ming ishlaysiz 1 haftalardan keyin kuniga 300-400 ming ishlaydigan bolasiz",
+    "golos": "Iltimos ovozli xabar tashlamang yozing faqat.",
+    "ha signallar": "Ha ishonchli signallar bor. O'ziz qaysi ilovada tikasiz?, Betpari, 1xbet, mostbet qaysi biri?",
+    "hisob skrenshot": "Skrenshot tashenchi hisobizga pul tushganini ko'ray.",
+    "hisob toldrdizmi?": "Hisob to‘ldirdingizmi? Bugungi signallar zo‘r edi. 15 ming so‘m tashlab qo‘ysangiz, bugunoq boshlardik. Nasib qilsa, sizni ham foydaga olib chiqaman. Hali kech emas, hoziroq boshlasa bo‘ladi.",
+    "hisob toldrish": ":zap:️ 𝙀𝙉𝘿𝙄 𝙌𝙊'𝙇𝙇𝘼𝙉𝙈𝘼𝙉𝙄 𝙆𝙊'𝙍𝙄𝘽 𝙃𝙄𝙎𝙊𝘽𝙄𝙕𝙉𝙄 𝙏𝙊𝙇𝘿𝙍𝙄𝙉𝙂 𝙐𝙕𝘾𝘼𝙍𝘿 𝙃𝙐𝙈𝙊 𝘿𝘼𝙉 𝙏𝙊'𝙇𝘿𝙄𝙍𝙎𝙀𝙕 𝘽𝙊'𝙇𝘼𝘿𝙄: https://youtu.be/ZtU4B2YFQRg :fire:",
+    "hisob toldrish uzcard": "UZCARD orqali Betpari hisobini to'ldirish\n\n1. Hisob to'ldirishga kiring\n2. Uzcard (p2p) to'lov turini tanlang\n3. Tasdiqlash tugmasini bosing\n4. Elektron pochtangizni yozing yoki bo'lmasa tayevoh681@misehub.com deb yozing\n5. To'lovni amalga oshirish tugmasini bosib kutib turing\n6. Payments by p2p money transfer - tugmasini bosing\n7.  Sayt sizga karta raqam beradi shunga ko'rsatilgan summani aniq o'tkazing\n\n- pulni istalgan ilovadan o'tkazsangiz bo'ladi\n- Ko'rsatilgan summadan kam ham ko'p ham o'tkazmang to'liq o'tkazing",
+    "id tashang": "🆔 Betpari ID’ingizni yuboring!\n👣 Buni qilish juda oson:\n\n1. Betpari ilovasiga kiring\n2. To‘ldirish tugmasini bosing\n3. Ochilgan oynaning yuqorisida ID raqamingiz yozilgan bo‘ladi\n4. Shu ID raqamni nusxalab menga yuboring ✅",
+    "iphonega sayt": "Mana shu saytga safari brauzeridan kiring https://clck.ru/3GJ5jx",
+    "kamida 15 ming": "Betpari hisobingizni kamida 15 ming so'mga to'ldiring, to'ldirib bo'lib menga ayting signal beraman pul topishni boshlaysiz.",
+    "man bilan": "Man bilan tikaman dsez BETPARI da tikamiz, Hisobizni ham to'ldirasiz kamida 20-30 ming so'mga, Signallarimni hammasini shunda tuzaman shunda ishlidi faqat, Bugunga biton signallar bor, Ro'yxatdan o'tib olasizmi tashab berimi ilovani, hisobizni ham to'ldira olasizmi puliz chiqadimi o'zi?",
+    "nega qayerida skrenshot": "Nega qayerida qiynalyapsiz skrenshot tashab bering",
+    "promokod kiritish zarur": "Promokodni kiritish — bu shart. Chunki men beradigan signal faqat shu promokod orqali ro‘yxatdan o‘tilgan akkauntlarda ishlaydi.\n\n🧠 Sistema shunaqa tuzilgan: boshqa kodda yoki kodsiz ro‘yxatdan o‘tsangiz, signal noto‘g‘ri ishlaydi yoki umuman tushmaydi ❌\n\n🎯 Shuning uchun aynan `VZLOMX` kodini kiriting — boshqa hech nima kerak emas.  \nKod ishlasa, signal ham ishlaydi ✅",
+    "pul ishlayman": "Men crash o'yinlariga signal beraman obunachilarim ko'plari 30 40 ming bilan boshlab haftasiga 400-500 ming ishlashadi :moneybag:\nHolasez sizga ham o'rgataman :fist:",
+    "qimor bu": "💬 Bu o‘yin qimor emasmi?\nSavolingiz to‘g‘ri, lekin yo‘q — bu o‘yin omadga emas, tahlilga asoslangan.\nMen sizga aniq hisoblangan signal beraman, siz faqat shunga amal qilasiz.\n\n❌ Ko‘r-ko‘rona bosish yo‘q\n✅ Reja bilan, xavfni nazorat qilib o‘ynaysiz\n\nShu yo‘l bilan odamlar barqaror foyda olayapti.",
+    "qollanma": "🛠 QANDAY FOYDALANISH KERAK?\n1. BETPARIga kiring\n2. Menyudan Games bo‘limiga o‘ting\n3. Crash o‘yini ga kiring — Crash rasmi: https://i.ibb.co/VcCFtb0v/image.png\n\n Endi men bergan signalga qarang:\n● Vaqti kelganda “Garov tikish / Сделать ставку” tugmasini bosing\n● Samolyot uchadi\n● Ko‘rsatilgan x koeffitsientga yetganda, “Pulni olish / Забрать” tugmasini bosing\n● Shu bilan foyda olasiz \n\n️Asosiysi – vaqt va koeffitsientga diqqat!\nMen aytgan vaqtda tikish muhim.",
+    "royxatdan otdizmi": "royxatdan otdizmi bugunga chotki signallar bor edi tezroq ro'yxatdan o'tib kamida 15 ming so'mga hisob toldrsez bugun boshlavorar edik nasib, sizni ham foydaga olib chiqaman bugundan",
+    "royxatdan otish": "https://t.me/GPTCRASH_APK\n\n1. Ushbu linkga kiring\n2. Telegram kanaldagi Ilovani yuklab oling\n3. Ilovani o'rnatib ichiga kiring\n4. Ro'yxatdan o'tish tugmasini bosing\n5. Ro'yxatdan o'ting\n6. Promokodga VZLOMX yozing",
+    "salom": "Assalomu Aleykum. Yaxshimisiz? Signal olish uchun yozdizmi yoki Pul ishlashni o'rganish uchunmi?",
+    "shugullanaman 15 yildan beri": "15 yildan beri shu ish bilan shug‘ullanaman. Crash — bu strategiya o‘yini, tasodif emas. Menda hammasi ishlaydi. Shogirdlarim ko‘p, hammasi foydada. Ishonmasangiz, sinab ko‘ring.",
+    "signal beraman": "Men sizga har kuni ertalab Instagramda 10 ta signal yuboraman, siz faqat 'signal bering' deb eslatib qo'ysangiz bas – keyin signallarni tashlab beraman.",
+    "signal bu": "signal bu hullas bitta samalyot o'yin bor crash degan shunda samalyot uchadi va qanchadur uchgandan keyin portlab ketadi, signal shu qachon qanchagacha uchishini oldindan bilish",
+    "unda oxshamaydi": "U ilovada oxshmaydida keyin meni so'kib yurasiz",
+    "undan chiqib": "undan chiqib qaytadan ro'yxatdan o'tishiz kerak yangi akkaunt ochishiz kerak VZLOMX promokodini kiritishiz kerak bolmasa signal ishlamaydi"
+    };
+
+    const container = document.getElementById("container");
+    const toast = document.getElementById("toast");
+
+    function showToast() {
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2000);
+    }
+
+    for (let key in data) {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.textContent = key;
+      card.onclick = () => {
+        navigator.clipboard.writeText(data[key])
+          .then(showToast)
+          .catch(() => alert("❌ Nusxalashda xatolik yuz berdi"));
+      };
+      container.appendChild(card);
+    }
+  </script>
+</body>
+</html>
